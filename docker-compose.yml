@@ -1,0 +1,16 @@
+version: '3.5'
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=questionario
+      - MYSQL_ROOT-USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  db:
+    driver: local

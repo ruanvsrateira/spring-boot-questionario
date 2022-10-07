@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Questao</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5">
+  <form th:object="${questao}" method="post" action="/cadastrar-questao">
+
+    <label for="inputQuestion" class="form-label">Titulo da questão</label>
+    <input type="text" class="form-control" id="inputQuestion" placeholder="Questao" th:field="*{titulo}">
+
+    <br />
+
+    <label for="inputPontos" class="form-label">Valor de pontos ao acerto</label>
+    <input type="number" class="form-control" id="inputPontos" placeholder="Pontos" th:field="*{pontos}">
+
+    <br />
+
+    <label>Alternativa 1</label>
+    <input type="text" class="form-control" placeholder="Titulo da alternativa" th:field="*{alternativa1}">
+    <p>Alternativa correta <input type="checkbox" th:field="*{alternativa1Correta}" /></p>
+
+    <br />
+
+    <label>Alternativa 2</label>
+    <input type="text" class="form-control" placeholder="Titulo da alternativa" th:field="*{alternativa2}">
+    <p>Alternativa correta <input type="checkbox" th:field="*{alternativa2Correta}" /></p>
+
+    <br />
+
+    <label>Alternativa 3</label>
+    <input type="text" class="form-control" placeholder="Titulo da alternativa" th:field="*{alternativa3}">
+    <p>Alternativa correta <input type="checkbox" th:field="*{alternativa3Correta}" /></p>
+
+    <br />
+
+    <label>Alternativa 4</label>
+    <input type="text" class="form-control" placeholder="Titulo da alternativa" th:field="*{alternativa4}">
+    <p>Alternativa correta <input type="checkbox" th:field="*{alternativa4Correta}"/></p>
+
+    <button class="btn btn-primary mt-3"  type="submit">Cadastrar Questão</button>
+  </form>
+</div>
+</body>
+</html>
