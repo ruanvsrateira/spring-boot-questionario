@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <title>Questionario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/hr.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h2 style="font-family: 'Poppins'">Questionario</h2> <br />
-        <h3 style="font-family: 'Poppins'">Total de Perguntas:  <span th:text="${quantidadeQuestoes}"></span></h3>
-
-        <br />
-
-        <div th:each="q : ${questao}" class="bg-light">
-            <hr />
-            <strong><p th:text="${q.questao}" style="font-family: 'Poppins'"></p></strong>
-            <div th:each="a : ${q.alternativas}" class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="exampleForm" />
-                <label class="form-check-label" th:text="${a.titulo}"></label>
-            </div>
-        </div>
-
-        <br />
-
-        <button class="btn btn-outline-primary">Enviar Respostas</button>
-        <button class="btn btn-outline-danger">Voltar</button>
-    </div>
+<body style="height: 100vh">
+    <div class="d-flex align-items-center" style="height: 10vh" th:include="/fragments/header.html"></div>
+    <main class="bg-white d-flex flex-column justify-content-center align-center rounded" style="width: 100vw; height: 90vh; box-shadow: rgba(0, 0, 0, 0.19) 0px 1px 1px, rgba(0, 0, 0, 0.19) 0px 2px 2px;">
+       <div class="container bg-light mt-5 p-5 rounded" style="box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+           <h1 th:text="${questao.questao}"></h1>
+           <br />
+           <form method="post" th:action="@{/resposta-questao/{id}(id=${questaoId})}" th:object="${resposta}">
+               <div class="d-flex align-items-center">
+                   <h5 th:text="${questao.alternativas[0].titulo}"></h5>
+                   <input class="ml-2" type="checkbox" th:field="*{alternativa1Escolhida}" />
+               </div>
+               <div class="d-flex align-items-center">
+                   <h5 th:text="${questao.alternativas[1].titulo}"></h5>
+                   <input class="ml-2" type="checkbox" th:field="*{alternativa2Escolhida}" />
+               </div>
+               <div class="d-flex align-items-center">
+                   <h5 th:text="${questao.alternativas[2].titulo}"></h5>
+                   <input class="ml-2" type="checkbox" th:field="*{alternativa3Escolhida}" />
+               </div>
+               <div class="d-flex align-items-center">
+                   <h5 th:text="${questao.alternativas[3].titulo}"></h5>
+                   <input class="ml-2" type="checkbox" th:field="*{alternativa4Escolhida}" />
+               </div>
+                <br />
+               <input type="hidden" th:field="*{usuarioId}" value="${usuarioId}"/>
+               <button class="btn btn-primary" type="submit">Enviar</button>
+           </form>
+       </div>
+    </main>
 </body>
 </html>

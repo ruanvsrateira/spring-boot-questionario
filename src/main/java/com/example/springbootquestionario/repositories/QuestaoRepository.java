@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository()
 public interface QuestaoRepository extends CrudRepository<Questao, Integer> {
-
     @Query(value="SELECT COUNT(q.id) FROM questao q; ", nativeQuery = true)
     String countQuestoes();
 }

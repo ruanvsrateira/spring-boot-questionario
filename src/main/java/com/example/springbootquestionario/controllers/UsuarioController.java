@@ -1,7 +1,6 @@
 package com.example.springbootquestionario.controllers;
 
 import com.example.springbootquestionario.entities.Usuario;
-import com.example.springbootquestionario.repositories.UsuarioRepository;
 import com.example.springbootquestionario.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,16 +28,16 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar-usuario")
-    public RedirectView  salvarUsuario(Usuario usuario, RedirectAttributes attributes) {
+    public RedirectView salvarUsuario(Usuario usuario, RedirectAttributes attrs) {
         List<Usuario> exist = service.findUsuarioByEmail(usuario.getEmail());
 
         if(exist.size() > 0) {
-            attributes.addAttribute("usuarioId", exist.get(0).getId());
+            attrs.addAttribute("usuarioId", exist.get(0).getId());
         } else {
             service.criarNovoUsuario(usuario);
-            attributes.addAttribute("usuarioId", usuario.getId());
+            attrs.addAttribute("usuarioId", usuario.getId());
         }
 
-        return new RedirectView("questionario");
+        return new RedirectView("questionario/0");
     }
 }

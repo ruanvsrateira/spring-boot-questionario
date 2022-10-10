@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 
@@ -20,15 +19,6 @@ public class QuestaoController {
 
     @Autowired
     private AlternativaService alternativaService;
-
-    @GetMapping("/questionario")
-    public String listarQuestões(@ModelAttribute("usuarioId") Integer id, Model model) {
-        model.addAttribute("usuarioId", id);
-        model.addAttribute("questao", questaoService.listarQuestoes());
-        model.addAttribute("quantidadeQuestoes", questaoService.countQuestoes());
-
-        return "questionario";
-    }
 
     @GetMapping("/cadastrar-questao")
     public String cadastrarQuestao(QuestaoVO questaoVO, Model model) {

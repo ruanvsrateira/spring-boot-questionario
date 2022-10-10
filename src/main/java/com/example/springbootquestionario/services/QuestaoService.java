@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestaoService {
@@ -17,8 +18,12 @@ public class QuestaoService {
     QuestaoRepository repo;
 
     @Transactional
-    public Iterable<Questao> listarQuestoes() {
-        return repo.findAll();
+    public List<Questao> listarQuestoes() {
+        Iterable<Questao> iterableQuestoes = repo.findAll();
+        List<Questao> listaQuestoes = new ArrayList<Questao>();
+        iterableQuestoes.forEach(questao -> listaQuestoes.add(questao));
+
+        return listaQuestoes;
     }
 
     @Transactional
@@ -34,6 +39,10 @@ public class QuestaoService {
         questao.setPontos(pontos);
 
         return repo.save(questao);
+    }
+    @Transactional
+    public Optional<Questao> findQuestaoById(Integer id) {
+        return repo.findById(id);
     }
 
 }

@@ -16,16 +16,6 @@ public class UsuarioService {
     UsuarioRepository repo;
 
     @Transactional
-    public Iterable<Usuario> listarUsuarios() {
-        return repo.findAll();
-    }
-
-    @Transactional
-    public Optional<Usuario> findUsuarioById(Integer id) {
-        return repo.findById(id);
-    }
-
-    @Transactional
     public Usuario criarNovoUsuario(Usuario usuario) {
         return repo.save(usuario);
     }
@@ -36,7 +26,14 @@ public class UsuarioService {
         return usuario;
     }
 
-    @Transactional
+    public Iterable<Usuario> listarUsuarios() {
+        return repo.findAll();
+    }
+
+    public Optional<Usuario> findUsuarioById(Integer id) {
+        return repo.findById(id);
+    }
+
     public List<Usuario> findUsuarioByEmail(String email) {
         return repo.findUsuarioByEmail(email);
     }
