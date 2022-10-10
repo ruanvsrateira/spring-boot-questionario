@@ -18,20 +18,6 @@ public class QuestaoService {
     QuestaoRepository repo;
 
     @Transactional
-    public List<Questao> listarQuestoes() {
-        Iterable<Questao> iterableQuestoes = repo.findAll();
-        List<Questao> listaQuestoes = new ArrayList<Questao>();
-        iterableQuestoes.forEach(questao -> listaQuestoes.add(questao));
-
-        return listaQuestoes;
-    }
-
-    @Transactional
-    public String countQuestoes() {
-        return repo.countQuestoes();
-    }
-
-    @Transactional
     public Questao criarNovaQuestao(String titulo, Integer pontos, ArrayList<Alternativa> alternativas) {
         Questao questao = new Questao();
         questao.setQuestao(titulo);
@@ -40,7 +26,19 @@ public class QuestaoService {
 
         return repo.save(questao);
     }
-    @Transactional
+
+    public List<Questao> listarQuestoes() {
+        Iterable<Questao> iterableQuestoes = repo.findAll();
+        List<Questao> listaQuestoes = new ArrayList<Questao>();
+        iterableQuestoes.forEach(questao -> listaQuestoes.add(questao));
+
+        return listaQuestoes;
+    }
+
+    public String countQuestoes() {
+        return repo.countQuestoes();
+    }
+
     public Optional<Questao> findQuestaoById(Integer id) {
         return repo.findById(id);
     }

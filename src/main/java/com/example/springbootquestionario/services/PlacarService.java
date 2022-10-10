@@ -15,7 +15,6 @@ public class PlacarService {
     @Autowired
     UsuarioRepository repo;
 
-    @Transactional
     public List<Usuario> listarPlacar() {
         return repo.findUsuarioOrderByPontosAsc();
     }
