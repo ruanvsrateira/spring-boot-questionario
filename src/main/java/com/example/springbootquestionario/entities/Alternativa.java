@@ -1,12 +1,11 @@
 package com.example.springbootquestionario.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Data
 public class Alternativa {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
